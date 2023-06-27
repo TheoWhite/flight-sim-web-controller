@@ -18,4 +18,5 @@ from flight import views
 
 urlpatterns = [
     path('', views.Homepage.as_view(), name='home'),
+    path('flightdata', views.FlightData.as_view())
 ]
