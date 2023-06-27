@@ -18,5 +18,7 @@ class FlightData(View):
         req = request.POST.dict()
         landingGearState = int(req.get("input[gear]"))
         #print("---\n",landingGearState,"\nState:",type(landingGearState),"\n","---\n")
+        data = fs.getSystemState()
+        print(data)
         fs.SetLandingGearState(landingGearState)
         return render(request,"homepage.html", {"gear":fs.GetLandingGearState()})
