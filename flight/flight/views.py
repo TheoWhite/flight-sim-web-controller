@@ -30,18 +30,23 @@ class FlightData(View):
             return render(request,"homepage.html", {"gear":fs.GetLandingGearState()})
         if("input[keyboard_value]" in req):
             global keyboard_en
+            print("value is (kb): ", keyboard_en)
             keyboard_en = req.get("input[keyboard_value]")
         return render(request,"homepage.html")
     
 
 def updateLandingGear(req):
+    global keyboard_en
     landingGearState = int(req.get("input[gear]"))
     data = fs.getSystemState()
     print("Data is ", data)
-    global keyboard_en
-    if(keyboard_en == 1):
+    keyboard_en = int (keyboard_en)
+    print(type(keyboard_en))
+    if keyboard_en == 1:
         keyboard.press('g')
-        time.sleep(0.1)
+        time.sleep(0.3)
+        print("Key pressed")
         keyboard.release('g')
     else :
+        print("Landing gear")
         fs.SetLandingGearState(landingGearState)

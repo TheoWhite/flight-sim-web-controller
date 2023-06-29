@@ -100,9 +100,12 @@ jQuery(document).on('click','#toggle_landing_gear_down',function(){
 
 $('#keyboard').change(function() {
     var x=$("#keyboard").is(":checked");
+    let p = x? 1:0;
     document.getElementById("Keyboard_label").style.visibility = "visible";
-    ModifyLabelText(x,"Keyboard_label");
-    let req = {"keyboard_value":x};
+    ModifyLabelText(p,"Keyboard_label");
+
+    let req = {"keyboard_value":p};
+    
     sendPOSTRequest(req);
     //$('#keyboard').val(this.checked);  //Used to set the value       
 });
