@@ -39,13 +39,14 @@ def SetLandingGearState(new_state):
 
 def getSystemState():
     global data
-    data["ground_altitude"]=  aq.get("GROUND_ALTITUDE") #Ground altitude
+    data["ground_altitude"]=  aq.get("GROUND_ALTITUDE") or False #Ground altitude
     data["sim_on_ground"]= aq.get("SIM_ON_GROUND") #Check if the sim is on the ground
     data["aircraft_name"]= aq.get("TITLE") #Name of the aircraft from aircraft.cfg
     data["plane_altitude"]= aq.get("PLANE_ALTITUDE") #plane altitude
     data["airspeed_indicated"]= aq.get("AIRSPEED_INDICATED") #Indicated airspeed
     data["airspeed_mach"]= aq.get("AIRSPEED_MACH") #Current mach
     data["airspeed_true"]=  aq.get("AIRSPEED_TRUE") #True airspeed
+    return data
 
 
 

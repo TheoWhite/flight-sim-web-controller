@@ -7,6 +7,10 @@ function loadLayout()
     CreateButton("Toggle Landing Gear down","toggle_landing_gear_down");
     CreateLabel("Fuel state","fuel_state");
     CreateLabel("Altitude","plane_altitude");
+    
+    CreateLabel("x","Keyboard_label"); //Create but hide the label
+    document.getElementById("Keyboard_label").style.visibility = "hidden";
+
 }
 
 
@@ -31,6 +35,14 @@ function CreateLabel(place_holder_text,id)
     new_label.innerHTML = place_holder_text;
     new_label.style.paddingRight = "4%";
     document.body.appendChild(new_label);
+}
+
+
+function ModifyLabelText(new_text_value,id)
+{
+    //Use the ID of the label to modify the value of label
+    const existing_label = document.getElementById(id);
+    existing_label.innerHTML = new_text_value;
 }
 
 
@@ -84,4 +96,13 @@ jQuery(document).on('click','#toggle_landing_gear_down',function(){
     //Change the state of the landing gear on button press
     let req = {"gear":"1"}
     sendPOSTRequest(req);
+});
+
+$('#keyboard').change(function() {
+    var x=$("#keyboard").is(":checked");
+    document.getElementById("Keyboard_label").style.visibility = "visible";
+    ModifyLabelText(x,"Keyboard_label");
+    let req = {"keyboard_value":x};
+    sendPOSTRequest(req);
+    //$('#keyboard').val(this.checked);  //Used to set the value       
 });
